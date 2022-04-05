@@ -1,0 +1,19 @@
+version: '2.4'
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./templates:/etc/nginx/templates
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    tty: true
+    ports:
+      - "8080:80"
+    networks:
+      comestri-network:
+        aliases:
+          - admin.commerceconnect.local
+          - pim.commerceconnect.local
+          - channel.commerceconnect.local
+networks:
+  comestri-network:
+    external: true
